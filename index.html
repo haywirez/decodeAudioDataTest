@@ -26,9 +26,12 @@
           
 
           const test = async(resDiv, file, type) => {
-            const buffer = await (await fetch(file)).arrayBuffer();
-            a.decodeAudioData(buffer, (decoded) => {
-                 resDiv.innerHTML += `<div>${type}: ${decoded.duration}, ${decoded.length}</div>`;
+            const buffer = await (await fetch(file)).arrayBuffer()
+            a.decodeAudioData(buffer,
+            (decoded) => {
+               resDiv.innerHTML += `<div>${type}: ${decoded.duration}, ${decoded.length}</div>`;
+            }, (error) => {
+               resDiv.innerHTML += `<div>${type}: decoding error</div>`
             });
 
           }
